@@ -18,7 +18,11 @@
           <router-link :to="{ name: 'Home' }">
             <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
           </router-link>
-          <li class="nav-item"><a class="nav-link" href="#!">About</a></li>
+          <router-link :to="{ name: 'Create' }">
+            <li class="nav-item">
+              <a class="nav-link" href="#!">Create Blog</a>
+            </li>
+          </router-link>
           <li class="nav-item"><a class="nav-link" href="#!">Contact</a></li>
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="#">Blog</a>

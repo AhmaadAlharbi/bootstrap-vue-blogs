@@ -45,7 +45,7 @@
       </div>
       <div class="col-lg-4">
         <Search />
-        <Categories />
+        <!-- <Categories :posts="posts" /> -->
       </div>
     </div>
   </div>
@@ -55,15 +55,17 @@
 import Navbar from "../components/Navbar.vue";
 import Search from "../components/Search.vue";
 import Categories from "../components/Categories.vue";
-import getPost from "../composables/getPost";
+import getPost from "../composables/getPost.js";
+import getPosts from "../composables/getPosts.js";
 import { useRoute } from "vue-router";
 export default {
   components: { Navbar, Search, Categories },
   setup() {
     const route = useRoute();
     const { post, error, load } = getPost(route.params.id);
+    const { posts } = getPosts();
     load();
-    return { post, error };
+    return { posts, post, error };
   },
 };
 </script>

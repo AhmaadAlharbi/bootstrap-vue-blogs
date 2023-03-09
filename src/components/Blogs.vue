@@ -1,6 +1,6 @@
 <template>
   <!-- Featured blog post-->
-  <div class="card mb-4">
+  <!-- <div class="card mb-4">
     <a href="#!"
       ><img
         class="card-img-top"
@@ -18,7 +18,7 @@
       </p>
       <a class="btn btn-primary disabled" href="#!">Read more →</a>
     </div>
-  </div>
+  </div> -->
   <!-- Nested row for non-featured blog posts-->
   <div class="row">
     <div class="col-lg-6" v-for="post in posts" :key="post.id">
