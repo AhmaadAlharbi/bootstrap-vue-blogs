@@ -1,4 +1,5 @@
 import { ref } from "vue";
+import { projectFirestore } from "../firbase/config";
 import getPosts from "./getPosts";
 
 const getPost = (id) => {
@@ -9,11 +10,11 @@ const getPost = (id) => {
       await new Promise((resolve) => {
         setTimeout(resolve, 100);
       });
-      const data = await fetch("http://localhost:3000/posts/" + id);
-      if (!data.ok) {
-        throw Error("no post to show");
+      let res = await projectFirestore.collection("posts").doc(id).get();
+      if (!res.exists) {
+        throw Error("the post is not exists");
       }
-      post.value = await data.json();
+      post.value = { ...res.data(), id: res.id };
     } catch (err) {
       error.value = err.message;
     }

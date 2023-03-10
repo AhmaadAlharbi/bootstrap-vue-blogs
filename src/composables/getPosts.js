@@ -1,4 +1,5 @@
 import { ref } from "vue";
+import { projectFirestore } from "../firbase/config";
 
 const getPosts = () => {
   const posts = ref([]);
@@ -8,11 +9,13 @@ const getPosts = () => {
       await new Promise((resolve) => {
         setTimeout(resolve, 100);
       });
-      let data = await fetch("http://localhost:3000/posts");
-      if (!data.ok) {
-        throw Error("no data to show");
-      }
-      posts.value = await data.json();
+      const res = await projectFirestore
+        .collection("posts")
+        .orderBy("createdAt", "desc")
+        .get();
+      posts.value = res.docs.map((doc) => {
+        return { ...doc.data(), id: doc.id };
+      });
     } catch (err) {
       error.value = err.message;
     }

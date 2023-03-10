@@ -38,6 +38,9 @@
                 <p class="fs-5 mb-4">
                   {{ post.body }}
                 </p>
+                <button @click="handleDelete" class="btn btn-danger">
+                  delete post
+                </button>
               </section>
             </article>
           </div>
@@ -57,15 +60,21 @@ import Search from "../components/Search.vue";
 import Categories from "../components/Categories.vue";
 import getPost from "../composables/getPost.js";
 import getPosts from "../composables/getPosts.js";
-import { useRoute } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
+import { projectFirestore } from "../firbase/config";
 export default {
   components: { Navbar, Search, Categories },
   setup() {
     const route = useRoute();
+    const router = useRouter();
     const { post, error, load } = getPost(route.params.id);
     const { posts } = getPosts();
     load();
-    return { posts, post, error };
+    const handleDelete = async () => {
+      await projectFirestore.collection("posts").doc(route.params.id).delete();
+      router.push("/");
+    };
+    return { posts, post, error, handleDelete };
   },
 };
 </script>

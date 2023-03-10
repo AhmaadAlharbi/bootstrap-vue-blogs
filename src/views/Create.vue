@@ -40,6 +40,7 @@
 import { ref } from "vue";
 import { useRouter } from "vue-router";
 import Navbar from "../components/Navbar.vue";
+import { projectFirestore, timestamp } from "../firbase/config";
 const router = useRouter();
 const title = ref(null);
 const body = ref(null);
@@ -56,17 +57,13 @@ const handleKeydown = () => {
 
 const handleSubmit = async () => {
   const post = {
-    id: Math.floor(Math.random() * 10000),
     title: title.value,
     body: body.value,
     tags: tags.value,
+    createdAt: timestamp(),
   };
+  const res = await projectFirestore.collection("posts").add(post);
 
-  await fetch("http://localhost:3000/posts", {
-    method: "POST",
-    headers: { "Content-Type": "Application/json" },
-    body: JSON.stringify(post),
-  });
   router.push({ name: "Home" });
 };
 </script>
