@@ -40,7 +40,7 @@
 import { ref } from "vue";
 import { useRouter } from "vue-router";
 import Navbar from "../components/Navbar.vue";
-import { projectFirestore, timestamp } from "../firbase/config";
+import { projectFirestore, timestamp } from "../firebase/config";
 const router = useRouter();
 const title = ref(null);
 const body = ref(null);

@@ -3,12 +3,18 @@ import HomeView from "../views/HomeView.vue";
 import Details from "../views/Details.vue";
 import Create from "../views/Create.vue";
 import Tag from "../views/Tag.vue";
+import Welcome from "../views/Welcome.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
       path: "/",
+      name: "Welcome",
+      component: Welcome,
+    },
+    {
+      path: "/blogs",
       name: "Home",
       component: HomeView,
     },

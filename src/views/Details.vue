@@ -61,7 +61,7 @@ import Categories from "../components/Categories.vue";
 import getPost from "../composables/getPost.js";
 import getPosts from "../composables/getPosts.js";
 import { useRoute, useRouter } from "vue-router";
-import { projectFirestore } from "../firbase/config";
+import { projectFirestore } from "../firebase/config";
 export default {
   components: { Navbar, Search, Categories },
   setup() {

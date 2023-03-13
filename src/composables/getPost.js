@@ -1,5 +1,5 @@
 import { ref } from "vue";
-import { projectFirestore } from "../firbase/config";
+import { projectFirestore } from "../firebase/config";
 import getPosts from "./getPosts";
 
 const getPost = (id) => {
